@@ -5,7 +5,7 @@
 *.userosscache
 *.sln.docstates
 
-# Sensitive files - DO NOT COMMIT
+# Sensitive files
 credentials.json
 
 # Rider specific
