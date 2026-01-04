@@ -1,3 +1,5 @@
+using JobAutoApplier.Credentials;
+
 namespace JobAutoApplier.Pracuj;
 
 public static class PracujConstants
