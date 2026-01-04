@@ -4,5 +4,5 @@ namespace JobAutoApplier.Strategies;
 
 public interface ILoginStrategy
 {
-    public Task<IBrowserContext> Login();
+    public Task<string> Login();
 }

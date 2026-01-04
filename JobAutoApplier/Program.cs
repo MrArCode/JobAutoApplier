@@ -23,7 +23,7 @@ class Program
         // }
 
         PracujLogin pracujLogin = new PracujLogin();
-        IBrowserContext context = await pracujLogin.Login();
+        string state = await pracujLogin.Login();
 
 
         PracujApplyExecutor executor = new PracujApplyExecutor();
@@ -31,6 +31,8 @@ class Program
         [
             "https://www.pracuj.pl/praca/data-engineering-manager-katowice-wroclawska-54,oferta,1004523102?s=b547587c&searchId=MTc2NzQ2MzIzMTQzMy43MTMx"
         ];
-        await executor.Apply(test, context);
+        await executor.Apply(test, state);
+        
+
     }
 }

@@ -5,14 +5,8 @@ namespace JobAutoApplier.Pracuj;
 
 public class PracujApplyExecutor : IApplyStrategy
 {
-    public async Task Apply(List<string> links, IBrowserContext context)
+    public async Task Apply(List<string> links, string state)
     {
-        IPage page = await context.NewPageAsync();
-
-        foreach (var link in links)
-        {
-            await page.GotoAsync(link);
-            
-        }
+        
     }
 }

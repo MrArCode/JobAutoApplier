@@ -10,7 +10,7 @@ public class PracujLogin : ILoginStrategy
 {
     private static readonly ILogger Logger = Log.ForContext<PracujLogin>();
 
-    public async Task<IBrowserContext> Login()
+    public async Task<string> Login()
     {
         using IPlaywright playwright = await Playwright.CreateAsync();
         await using IBrowser browser = await PlaywrightUtils.CreateBrowser(playwright);
@@ -43,7 +43,9 @@ public class PracujLogin : ILoginStrategy
 
         await page.FillAsync(PracujConstants.PasswordInputSelector, PracujConstants.Password);
         await page.ClickAsync(PracujConstants.LoginButtonSelector);
+
+        var state = await context.StorageStateAsync();
         
-        return context;
+        return state;
     }
 }

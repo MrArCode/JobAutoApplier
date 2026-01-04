@@ -4,5 +4,5 @@ namespace JobAutoApplier.Strategies;
 
 public interface IApplyStrategy
 {
-    public Task Apply(List<string> links, IBrowserContext context);
+    public Task Apply(List<string> links, string state);
 }
