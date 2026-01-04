@@ -15,7 +15,7 @@ public static class PracujConstants
     // Login
     public const string LoginPageUrl = "https://login.pracuj.pl/";
     
-    public const string LoginInputSelector = "#login";
+    public const string LoginInputSelector = "#email";
     public const string PasswordInputSelector = "#password";
     
     public const string Login = "";

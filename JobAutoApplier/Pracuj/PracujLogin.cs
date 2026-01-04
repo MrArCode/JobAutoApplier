@@ -44,7 +44,8 @@ public class PracujLogin : ILoginStrategy
         await page.FillAsync(PracujConstants.PasswordInputSelector, PracujConstants.Password);
         await page.ClickAsync(PracujConstants.LoginButtonSelector);
 
-        var state = await context.StorageStateAsync();
+        await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
+        string state = await context.StorageStateAsync();
         
         return state;
     }
