@@ -5,6 +5,9 @@
 *.userosscache
 *.sln.docstates
 
+# Sensitive files - DO NOT COMMIT
+credentials.json
+
 # Rider specific
 .idea/
 *.sln.iml
