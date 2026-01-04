@@ -1,6 +1,5 @@
-﻿using JobAutoApplier.Controllers;
+﻿using System.Text.Json;
 using JobAutoApplier.Pracuj;
-using Microsoft.Playwright;
 using Serilog;
 
 namespace JobAutoApplier;
@@ -13,15 +12,30 @@ class Program
             .MinimumLevel.Information()
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
             .CreateLogger();
+        
+        if (!File.Exists("credentials.json"))
+        {
+            ShowError("❌ Missing credentials.json file!");
+            return;
+        }
 
-        PracujLinkCollector pracujLinkCollector = new PracujLinkCollector();
-        var links = await pracujLinkCollector.CollectLinks();
+        string json = await File.ReadAllTextAsync("credentials.json");
+        var credentials = JsonSerializer.Deserialize<Credentials.Credentials>(json);
 
-        PracujLogin login = new PracujLogin();
-        string state = await login.Login();
+        if (credentials is null)
+        {
+            ShowError("❌ Invalid credentials.json format!");
+            return;
+        }
 
-        PracujApplyExecutor executor = new PracujApplyExecutor();
-        await executor.Apply(links, state);
+        PracujConstants.LoadCredentials(credentials.Pracuj);
+        Console.WriteLine(PracujConstants.Login);
+    }
 
+    private static void ShowError(string errorMessage)
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(errorMessage);
+        Console.ResetColor();
     }
 }
