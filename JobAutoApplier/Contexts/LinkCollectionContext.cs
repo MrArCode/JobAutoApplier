@@ -1,8 +1,8 @@
 using JobAutoApplier.Strategies;
 
-namespace JobAutoApplier.Controllers;
+namespace JobAutoApplier.Contexts;
 
-public class LinkCollectorController
+public class LinkCollectionContext
 {
     public Task<List<string>> CollectLinks(ILinkCollectorStrategy linkCollectorStrategy)
     {

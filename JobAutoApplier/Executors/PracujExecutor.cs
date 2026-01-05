@@ -1,4 +1,4 @@
-using JobAutoApplier.Controllers;
+using JobAutoApplier.Contexts;
 using JobAutoApplier.Pracuj;
 
 namespace JobAutoApplier.Executors;
@@ -7,13 +7,13 @@ public class PracujExecutor
 {
     public async Task ApplyForJobOffers()
     {
-        var linkCollectorController = new LinkCollectorController();
+        var linkCollectorController = new LinkCollectionContext();
         var links = await linkCollectorController.CollectLinks(new PracujLinkCollector());
 
-        var loginController = new LoginController();
+        var loginController = new LoginContext();
         string context = await loginController.Login(new PracujLogin());
 
-        var applyController = new ApplyController();
+        var applyController = new ApplicationContext();
         applyController.Apply(new PracujApplyExecutor(), links, context);
     }
 }

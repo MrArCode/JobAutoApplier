@@ -1,8 +1,8 @@
 using JobAutoApplier.Strategies;
 
-namespace JobAutoApplier.Controllers;
+namespace JobAutoApplier.Contexts;
 
-public class LoginController
+public class LoginContext
 {
     public Task<string> Login(ILoginStrategy loginStrategy)
     {

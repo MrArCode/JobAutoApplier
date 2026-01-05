@@ -1,8 +1,8 @@
 using JobAutoApplier.Strategies;
 
-namespace JobAutoApplier.Controllers;
+namespace JobAutoApplier.Contexts;
 
-public class ApplyController
+public class ApplicationContext
 {
     public void Apply(IApplyStrategy applyStrategy, List<string> links, string state)
     {
