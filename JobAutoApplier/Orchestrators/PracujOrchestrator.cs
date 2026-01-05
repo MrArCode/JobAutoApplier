@@ -1,9 +1,9 @@
 using JobAutoApplier.Contexts;
 using JobAutoApplier.Pracuj;
 
-namespace JobAutoApplier.Executors;
+namespace JobAutoApplier.Orchestrators;
 
-public class PracujExecutor
+public class PracujOrchestrator
 {
     public async Task ApplyForJobOffers()
     {
