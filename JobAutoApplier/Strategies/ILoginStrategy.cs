@@ -1,5 +1,3 @@
-using Microsoft.Playwright;
-
 namespace JobAutoApplier.Strategies;
 
 public interface ILoginStrategy

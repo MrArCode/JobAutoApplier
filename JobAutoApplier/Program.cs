@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using JobAutoApplier.Orchestrators;
 using JobAutoApplier.Pracuj;
 using Serilog;
 
@@ -29,7 +30,8 @@ class Program
         }
 
         PracujConstants.LoadCredentials(credentials.Pracuj);
-        Console.WriteLine(PracujConstants.Login);
+        var pracujOrchestrator = new PracujOrchestrator();
+        await pracujOrchestrator.ApplyForJobOffers();
     }
 
     private static void ShowError(string errorMessage)
