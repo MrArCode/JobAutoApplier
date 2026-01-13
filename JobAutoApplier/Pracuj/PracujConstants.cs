@@ -31,7 +31,7 @@ public static class PracujConstants
     // Credentials
     public static string Login { get; private set; } = string.Empty;
     public static string Password { get; private set; } = string.Empty;
-    
+
     public static void LoadCredentials(PortalCredentials credentials)
     {
         Login = credentials.Login;

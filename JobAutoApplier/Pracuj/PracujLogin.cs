@@ -3,7 +3,6 @@ using JobAutoApplier.Utils;
 using Microsoft.Playwright;
 using Serilog;
 
-
 namespace JobAutoApplier.Pracuj;
 
 public class PracujLogin : ILoginStrategy
@@ -46,7 +45,7 @@ public class PracujLogin : ILoginStrategy
 
         await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
         string state = await context.StorageStateAsync();
-        
+
         return state;
     }
 }

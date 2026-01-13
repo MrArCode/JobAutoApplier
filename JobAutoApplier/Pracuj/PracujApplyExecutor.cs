@@ -21,7 +21,7 @@ public class PracujApplyExecutor : IApplyStrategy
         {
             await page.GotoAsync(link);
             await page.ClickAsync("#offer-sidebar [data-test='anchor-apply']");
-            
+
             Thread.Sleep(5_000);
         }
     }

@@ -17,21 +17,21 @@ public class PracujLinkCollector : ILinkCollectorStrategy
         IPage page = await context.NewPageAsync();
 
         Logger.Information("Starting link collection from Pracuj.pl website");
-        
+
         await GoToStartingPage(page);
         await ManageCookies(page);
         var links = await CollectLinks(page);
 
         return links;
     }
-    
+
     private async Task GoToStartingPage(IPage page)
     {
         Logger.Information("Navigating to starting page {Url}", PracujConstants.StartPageUrl);
         await page.GotoAsync(PracujConstants.StartPageUrl);
         await page.WaitForLoadStateAsync(LoadState.Load);
     }
-    
+
     private async Task ManageCookies(IPage page)
     {
         try
@@ -40,11 +40,11 @@ public class PracujLinkCollector : ILinkCollectorStrategy
             {
                 Name = PracujConstants.CookiesButtonName
             };
-            
+
             await page
                 .GetByRole(AriaRole.Button, options)
                 .ClickAsync(new LocatorClickOptions { Timeout = PracujConstants.CookiePopupTimeout });
-            
+
             Logger.Information("Cookies accepted");
         }
         catch (TimeoutException)
@@ -52,12 +52,12 @@ public class PracujLinkCollector : ILinkCollectorStrategy
             Logger.Debug("No cookies popup found");
         }
     }
-    
+
     private async Task<List<string>> CollectLinks(IPage page)
     {
         var links = new HashSet<string>();
         var pageNumber = 1;
-        
+
         while (true)
         {
             Logger.Information("Processing page [{PageNumber}]", pageNumber);
@@ -73,7 +73,7 @@ public class PracujLinkCollector : ILinkCollectorStrategy
             }
 
             var offerTiles = await page.Locator(PracujConstants.OfferTileSelector).AllAsync();
-            
+
             foreach (ILocator tile in offerTiles)
             {
                 try
@@ -116,7 +116,7 @@ public class PracujLinkCollector : ILinkCollectorStrategy
         }
 
         Logger.Information("Link collection completed. Total fast-apply links: [{Total}]", links.Count);
-        
+
         return links.ToList();
     }
 }

@@ -13,7 +13,7 @@ class Program
             .MinimumLevel.Information()
             .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
             .CreateLogger();
-        
+
         if (!File.Exists("credentials.json"))
         {
             ShowError("❌ Missing credentials.json file!");
